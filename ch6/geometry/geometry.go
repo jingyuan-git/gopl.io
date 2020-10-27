@@ -5,9 +5,13 @@
 
 // Package geometry defines simple types for plane geometry.
 //!+point
-package geometry
+//package geometry
+package main
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 type Point struct{ X, Y float64 }
 
@@ -40,3 +44,10 @@ func (path Path) Distance() float64 {
 }
 
 //!-path
+
+func main() {
+	preim := Path{{1, 1}, {5, 1}, {5, 4}, {1, 1}}
+	fmt.Println(preim.Distance())
+	p := Point{1, 2}
+
+}

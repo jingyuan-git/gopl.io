@@ -21,11 +21,14 @@ func Extract(url string) ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	// 状态错误
 	if resp.StatusCode != http.StatusOK {
 		resp.Body.Close()
 		return nil, fmt.Errorf("getting %s: %s", url, resp.Status)
 	}
 
+	// 解析出链接里面的内容
 	doc, err := html.Parse(resp.Body)
 	resp.Body.Close()
 	if err != nil {
@@ -39,6 +42,7 @@ func Extract(url string) ([]string, error) {
 				if a.Key != "href" {
 					continue
 				}
+				// 如果a的key为href即为a链接形式，将其取出
 				link, err := resp.Request.URL.Parse(a.Val)
 				if err != nil {
 					continue // ignore bad URLs

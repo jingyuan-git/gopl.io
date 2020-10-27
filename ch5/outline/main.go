@@ -15,6 +15,9 @@ import (
 
 //!+
 func main() {
+	//reader := bufio.NewReader(os.Stdin)
+	//input, _ := reader.ReadString('\n')
+	//doc, err := html.Parse(reader)
 	doc, err := html.Parse(os.Stdin)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "outline: %v\n", err)

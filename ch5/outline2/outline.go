@@ -22,6 +22,8 @@ func main() {
 
 func outline(url string) error {
 	resp, err := http.Get(url)
+	//print("resp", resp)
+	//fmt.Println("resp.head = ", resp.Header)
 	if err != nil {
 		return err
 	}
@@ -61,9 +63,11 @@ func forEachNode(n *html.Node, pre, post func(n *html.Node)) {
 //!-forEachNode
 
 //!+startend
+// 深度作为全局变量, 输出空格的个数
 var depth int
 
 func startElement(n *html.Node) {
+	fmt.Println("n.Type = ", n.Type)
 	if n.Type == html.ElementNode {
 		fmt.Printf("%*s<%s>\n", depth*2, "", n.Data)
 		depth++
